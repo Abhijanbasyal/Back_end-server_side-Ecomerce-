@@ -7,13 +7,18 @@ const router = require('./routes/routes')
 const app = express();
 
 app.use(cors());
+app.use(express.json())
 
 
 
 const PORT = 8000 || process.env.PORT
 
 
-//error message
+// Routes
+app.use('/api', router);
+
+
+// Error handling middleware
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
     const errorMessage = err.message || "Internal Servor Error";
@@ -26,7 +31,7 @@ app.use((err, req, res, next) => {
   });
 
 
-//database connection and server running
+//database connection and server starting
 connectDB().then(() => {
 
     app.listen(PORT, () => {
