@@ -44,7 +44,9 @@ async function signUpController(req, res, next) {
         const savedUser = await userData.save();
 
         // Respond with success message
-        res.status(201).json(createSuccess(201, "User signed up successfully!", savedUser));
+        // res.status(201).json(createSuccess(201, "User signed up successfully!", savedUser));
+        res.json(createSuccess(201, "User signed up successfully!", savedUser));
+
 
     } catch (err) {
         next(err);
