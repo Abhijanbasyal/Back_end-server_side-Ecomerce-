@@ -38,9 +38,15 @@ async function loginController(req, res, next) {
             secure : true
           }
 
-          const { password: userPassword, ...userWithoutPassword } = user._doc;
+          const { password: userPassword, ...userWithoutPassword  } = user._doc;
 
-          res.cookie("token", token, tokenOption).json(createSuccess(201, "User login up successfully!", { user: userWithoutPassword, token }));
+          const userResponse = {
+              ...userWithoutPassword,
+              token
+          }
+
+          res.cookie('token', token, tokenOption);
+            res.status(200).json(createSuccess(200, "User logged in successfully", userResponse ));
 
 
         }else{
