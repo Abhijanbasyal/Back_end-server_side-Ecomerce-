@@ -9,9 +9,9 @@ const cookieParser = require("cookie-parser")
 const app = express();
 
 app.use(cors({
-  origin : process.env.CLIENT_DOMAIN,
-  credentials : true,
-  
+  origin: process.env.CLIENT_DOMAIN,
+  credentials: true,
+
 }));
 
 
@@ -26,26 +26,26 @@ const PORT = 8000 || process.env.PORT
 app.use('/api', router);
 
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-    const errorStatus = err.status || 500;
-    const errorMessage = err.message || "Internal Servor Error";
-    return res.status(errorStatus).json({
-      success: false,
-      status: errorStatus,
-      message: errorMessage,
-      stack: err.stack,
-    });
-  });
 
 
 //database connection and server starting
 connectDB().then(() => {
 
-    app.listen(PORT, () => {
-        console.log("Server is running", PORT);
-        console.log("Connected to the database");
-    })
+  app.listen(PORT, () => {
+    console.log("Server is running", PORT);
+    console.log("Connected to the database");
+  })
 })
 
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Internal Servor Error";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
