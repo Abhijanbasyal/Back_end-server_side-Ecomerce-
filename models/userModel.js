@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -11,7 +12,10 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     password: String,
-    UserImage: String,
+    UserImage: {
+       type: String,
+       default: "../assets/avatarProfile.jpeg",
+    },
     role: {
         type: String,
         enum: ["ADMIN", "CUSTOMER", "STAFF"],
