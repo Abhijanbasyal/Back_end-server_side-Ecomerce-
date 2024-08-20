@@ -11,7 +11,7 @@ async function SignIn(req, res, next) {
         if (!validUser) return next(createError(404, 'User not found!'));
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if (!validPassword) return next(createError(401, 'Invalid email or Password'));
-        const token = jwt.sign({ id: validUser._id }, process.env.SECRET_KEY, { expiresIn: 60 * 60 * 8 });
+        const token = jwt.sign({ id: validUser._id }, process.env.SECRET_KEY );//{ expiresIn: 60 * 60 * 8 } 
         const { password: pass, ...rest } = validUser._doc;
 
         const TokenOption = {

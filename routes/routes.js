@@ -23,8 +23,4 @@ router.post("/updateUser/:id", verifyUserToken, userUpdate);
 
 
 
-
-
-
- 
 module.exports = router

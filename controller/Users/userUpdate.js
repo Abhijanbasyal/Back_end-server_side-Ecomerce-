@@ -24,6 +24,12 @@ async function userUpdate(req, res, next){
               email: req.body.email,
               password: req.body.password,
               UserImage: req.body.UserImage,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              phoneNumber: req.body.phoneNumber,
+              dateOfBirth: req.body.dateOfBirth,
+              country: req.body.country,
+              gender: req.body.gender
             },
           },
           { new: true }
